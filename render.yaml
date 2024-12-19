@@ -1,19 +1,14 @@
-# This is a basic example Blueprint for a Django web service and
-# the PostgreSQL database it connects to.
+# Exported from Render on 2024-12-19T08:19:08Z
 services:
-  - type: web # A Python web service named django-app running on a free instance
-    plan: free
-    name: django-app
-    runtime: python
-    repo: https://github.com/ISSOLAHmelissa/clouad.git
-    buildCommand: "npm install"
-    startCommand: "npm start"
-    envVars:
-      - key: postgresql://cloud_db_t99h_user:S78eDn8M6pXc8OY3hqEjlQ5XHDMpqYsR@dpg-cte4blalqhvc73dctgb0-a/cloud_db_t99h # Sets DATABASE_URL to the connection string of the django-app-db database
-        fromDatabase:
-          name: cloud-db
-          property: DATABASE_URL
-
-databases:
-  - name: cloud-db # A PostgreSQL database named django-app-db running on a free instance
-    plan: free
+- type: web
+  name: clouad
+  runtime: node
+  repo: https://github.com/ISSOLAHmelissa/clouad
+  plan: free
+  envVars:
+  - key: DATABASE_URL
+    sync: false
+  region: frankfurt
+  buildCommand: npm install
+  startCommand: npm start
+version: "1"
